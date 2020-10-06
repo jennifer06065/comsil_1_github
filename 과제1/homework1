@@ -1,0 +1,19 @@
+echo "working directory:"
+read direc
+if [ "$direc" != "" ]
+then
+cd $direc >& /dev/null #표준에러메시지 출력 X
+if [ $? -ne 0 ]
+then
+echo "Can not change directory"
+exit 10
+fi
+fi
+for filename in *
+do
+change=$(echo $filename | tr 'A-Za-z' 'a-zA-Z')
+if [ $filename != $change ]
+then
+mv $filename $change
+fi
+done

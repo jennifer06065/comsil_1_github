@@ -1,0 +1,16 @@
+if [ "$#" -eq 0 ] 
+then
+echo "Usage: phone searchfor [...searchfor]"
+echo "(You didn't tell me what you want to search for.)"
+else
+var=$1
+shift
+while [ "$1" != "" ]
+do
+var="${var}|$1"
+shift
+done
+var="(${var})"
+egrep -i "$var" mydata > toawk
+awk -f display ./toawk
+fi

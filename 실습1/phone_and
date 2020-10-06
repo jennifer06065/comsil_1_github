@@ -1,0 +1,14 @@
+if [ "$#" -eq 0 ] 
+then
+echo "Usage: phone searchfor [...searchfor]"
+echo "(You didn't tell me what you want to search for.)"
+else
+cp mydata toawk1
+while [ "$1" != "" ]
+do
+grep $1 toawk1 > toawk2
+cat toawk2 > toawk1
+shift
+done
+awk -f display ./toawk1
+fi
